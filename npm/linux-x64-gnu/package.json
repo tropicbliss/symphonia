@@ -1,5 +1,5 @@
 {
-  "name": "@tropicbliss/symphonia-linux-x64-gnu",
+  "name": "symphonia-linux-x64-gnu",
   "version": "0.0.0",
   "os": [
     "linux"
@@ -11,12 +11,10 @@
   "files": [
     "symphonia.linux-x64-gnu.node"
   ],
-  "description": "An audio playback library for Node.js",
   "license": "MIT",
   "engines": {
     "node": ">= 10"
   },
-  "repository": "https://github.com/tropicbliss/symphonia",
   "libc": [
     "glibc"
   ]
