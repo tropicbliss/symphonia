@@ -5,5 +5,6 @@
 
 export interface Options {
   volume?: number
+  speed?: number
 }
 export function play(buf: Buffer, opt?: Options | undefined | null): void
