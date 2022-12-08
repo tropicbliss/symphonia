@@ -1,15 +1,17 @@
 {
-  "name": "@tropicbliss/symphonia",
+  "name": "symphonia",
   "version": "0.0.0",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
     "name": "symphonia",
     "triples": {
+      "defaults": false,
       "additional": [
         "aarch64-apple-darwin",
-        "aarch64-unknown-linux-gnu",
-        "armv7-unknown-linux-gnueabihf"
+        "aarch64-pc-windows-msvc",
+        "x86_64-apple-darwin",
+        "x86_64-pc-windows-msvc"
       ]
     }
   },
@@ -32,7 +34,5 @@
     "test": "ava",
     "version": "napi version"
   },
-  "packageManager": "yarn@3.3.0",
-  "repository": "https://github.com/tropicbliss/symphonia",
-  "description": "An audio playback library for Node.js"
+  "packageManager": "yarn@3.3.0"
 }
