@@ -5,6 +5,6 @@
 
 export interface Options {
   volume?: number
-  blocking?: boolean
 }
 export function play(buf: Buffer, opt: Options): void
+export function playAsync(buf: Buffer): void

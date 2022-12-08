@@ -4,8 +4,8 @@ use napi::{
   bindgen_prelude::{Buffer, Error, Status},
   Result,
 };
-use rodio::{Decoder, OutputStream, Sink};
-use std::io::Cursor;
+use rodio::{Decoder, OutputStream, Sink, Source};
+use std::io::{BufReader, Cursor};
 
 #[macro_use]
 extern crate napi_derive;
@@ -13,22 +13,24 @@ extern crate napi_derive;
 #[napi(object)]
 pub struct Options {
   pub volume: Option<f64>,
-  pub blocking: Option<bool>,
 }
 
 #[napi]
 pub fn play(buf: Buffer, opt: Options) -> Result<()> {
   let buf: Vec<u8> = buf.into();
   let volume = opt.volume.unwrap_or(1.0) as f32;
-  let blocking = opt.blocking.unwrap_or(true);
-  if blocking {
-    play_sound(buf, volume)?;
-  } else {
-    std::thread::spawn(move || {
-      play_sound(buf, volume).unwrap();
-    });
-  }
+  play_sound(buf, volume)?;
   Ok(())
+}
+
+#[napi]
+pub fn play_async(buf: Buffer) {
+  let buf: Vec<u8> = buf.into();
+  let (_stream, stream_handle) = OutputStream::try_default().unwrap();
+  let buf = Cursor::new(buf);
+  let file = BufReader::new(buf);
+  let source = Decoder::new(file).unwrap();
+  stream_handle.play_raw(source.convert_samples()).unwrap();
 }
 
 fn play_sound(buf: Vec<u8>, volume: f32) -> Result<()> {

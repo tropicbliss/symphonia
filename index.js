@@ -236,6 +236,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { play } = nativeBinding
+const { play, playAsync } = nativeBinding
 
 module.exports.play = play
+module.exports.playAsync = playAsync
