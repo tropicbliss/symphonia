@@ -21,6 +21,17 @@ pub fn play(buf: Buffer, opt: Options) -> Result<()> {
   let buf: Vec<u8> = buf.into();
   let volume = opt.volume.unwrap_or(1.0) as f32;
   let blocking = opt.blocking.unwrap_or(true);
+  if blocking {
+    play_sound(buf, volume)?;
+  } else {
+    std::thread::spawn(move || {
+      play_sound(buf, volume).unwrap();
+    });
+  }
+  Ok(())
+}
+
+fn play_sound(buf: Vec<u8>, volume: f32) -> Result<()> {
   let (_stream, stream_handle) =
     OutputStream::try_default().map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
   let sink =
@@ -30,8 +41,6 @@ pub fn play(buf: Buffer, opt: Options) -> Result<()> {
   let source =
     Decoder::new(cursor).map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
   sink.append(source);
-  if blocking {
-    sink.sleep_until_end();
-  }
+  sink.sleep_until_end();
   Ok(())
 }
