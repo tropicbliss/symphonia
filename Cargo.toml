@@ -12,7 +12,7 @@ crate-type = ["cdylib"]
 [dependencies]
 napi = "2"
 napi-derive = "2"
-rodio = "0.16"
+rodio = { version = "0.16", features = ["symphonia-all"] }
 
 [build-dependencies]
 napi-build = "2"
