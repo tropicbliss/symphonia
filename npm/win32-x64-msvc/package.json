@@ -1,6 +1,6 @@
 {
   "name": "symphonia-win32-x64-msvc",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "os": [
     "win32"
   ],
