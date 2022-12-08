@@ -26,7 +26,9 @@
         "aarch64-unknown-linux-gnu",
         "armv7-unknown-linux-gnueabihf",
         "aarch64-apple-darwin",
-        "aarch64-pc-windows-msvc"
+        "aarch64-pc-windows-msvc",
+        "aarch64-unknown-linux-gnu",
+        "armv7-unknown-linux-gnueabihf"
       ]
     }
   },
