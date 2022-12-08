@@ -1,0 +1,20 @@
+{
+  "name": "@tropicbliss/symphonia-win32-ia32-msvc",
+  "version": "0.0.0",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "ia32"
+  ],
+  "main": "symphonia.win32-ia32-msvc.node",
+  "files": [
+    "symphonia.win32-ia32-msvc.node"
+  ],
+  "description": "An audio playback library for Node.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": "https://github.com/tropicbliss/symphonia"
+}

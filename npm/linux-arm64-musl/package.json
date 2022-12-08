@@ -1,0 +1,23 @@
+{
+  "name": "@tropicbliss/symphonia-linux-arm64-musl",
+  "version": "0.0.0",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "symphonia.linux-arm64-musl.node",
+  "files": [
+    "symphonia.linux-arm64-musl.node"
+  ],
+  "description": "An audio playback library for Node.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": "https://github.com/tropicbliss/symphonia",
+  "libc": [
+    "musl"
+  ]
+}

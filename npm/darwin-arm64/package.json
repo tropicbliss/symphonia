@@ -1,0 +1,20 @@
+{
+  "name": "@tropicbliss/symphonia-darwin-arm64",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "symphonia.darwin-arm64.node",
+  "files": [
+    "symphonia.darwin-arm64.node"
+  ],
+  "description": "An audio playback library for Node.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": "https://github.com/tropicbliss/symphonia"
+}
