@@ -1,19 +1,21 @@
 [package]
+authors = ["tropicbliss <tropicbliss@protonmail.com>"]
 edition = "2021"
-name = "tropicbliss_symphonia"
-version = "0.0.0"
+name = "symphonia"
+version = "0.0.5"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
-# Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
-napi = { version = "2.10.1", default-features = false, features = ["napi4"] }
-napi-derive = "2.9.1"
+napi = "2"
+napi-derive = "2"
 rodio = "0.16"
 
 [build-dependencies]
-napi-build = "2.0.1"
+napi-build = "2"
 
 [profile.release]
 lto = true

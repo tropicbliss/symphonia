@@ -6,5 +6,4 @@
 export interface Options {
   volume?: number
 }
-export function play(buf: Buffer, opt: Options): void
-export function playAsync(buf: Buffer): void
+export function play(buf: Buffer, opt?: Options | undefined | null): void

@@ -4,8 +4,8 @@ use napi::{
   bindgen_prelude::{Buffer, Error, Status},
   Result,
 };
-use rodio::{Decoder, OutputStream, Sink, Source};
-use std::io::{BufReader, Cursor};
+use rodio::{Decoder, OutputStream, Sink};
+use std::io::Cursor;
 
 #[macro_use]
 extern crate napi_derive;
@@ -15,25 +15,17 @@ pub struct Options {
   pub volume: Option<f64>,
 }
 
+impl Default for Options {
+  fn default() -> Self {
+    Self { volume: Some(1.0) }
+  }
+}
+
 #[napi]
-pub fn play(buf: Buffer, opt: Options) -> Result<()> {
+pub fn play(buf: Buffer, opt: Option<Options>) -> Result<()> {
+  let opt = opt.unwrap_or_default();
   let buf: Vec<u8> = buf.into();
   let volume = opt.volume.unwrap_or(1.0) as f32;
-  play_sound(buf, volume)?;
-  Ok(())
-}
-
-#[napi]
-pub fn play_async(buf: Buffer) {
-  let buf: Vec<u8> = buf.into();
-  let (_stream, stream_handle) = OutputStream::try_default().unwrap();
-  let buf = Cursor::new(buf);
-  let file = BufReader::new(buf);
-  let source = Decoder::new(file).unwrap();
-  stream_handle.play_raw(source.convert_samples()).unwrap();
-}
-
-fn play_sound(buf: Vec<u8>, volume: f32) -> Result<()> {
   let (_stream, stream_handle) =
     OutputStream::try_default().map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
   let sink =
