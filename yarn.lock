@@ -75,6 +75,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tropicbliss/symphonia@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@tropicbliss/symphonia@workspace:."
+  dependencies:
+    "@napi-rs/cli": ^2.13.0
+    ava: ^4.3.3
+  languageName: unknown
+  linkType: soft
+
 "abbrev@npm:^1.0.0":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -1875,15 +1884,6 @@ __metadata:
   checksum: ee3d71c1d25f7f15d4a849e72b0c5f430df7cd8f702cf082fdbec5642a9546be6557766745655fa3a3e9c88f7c7eed849f2d74457b5b72cb9d94a779c0c8a948
   languageName: node
   linkType: hard
-
-"symphonia@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "symphonia@workspace:."
-  dependencies:
-    "@napi-rs/cli": ^2.13.0
-    ava: ^4.3.3
-  languageName: unknown
-  linkType: soft
 
 "tar@npm:^6.1.11, tar@npm:^6.1.2":
   version: 6.1.13

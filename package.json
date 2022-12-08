@@ -1,5 +1,5 @@
 {
-  "name": "symphonia",
+  "name": "@tropicbliss/symphonia",
   "version": "0.0.0",
   "main": "index.js",
   "types": "index.d.ts",
