@@ -1,5 +1,5 @@
 {
-  "name": "symphonia-darwin-x64",
+  "name": "@tropicbliss/symphonia-darwin-x64",
   "version": "0.0.21",
   "os": [
     "darwin"
