@@ -30,11 +30,37 @@ When I mean zero dependency, I mean zero dependency to a reasonable extent. Ther
 ## Usage
 
 ```js
+const axios = require("axios");
 const fs = require("fs");
 const symphonia = require("@tropicbliss/symphonia");
 
-const buf = fs.readFileSync("chime.ogg"); // Gets a Buffer
-symphonia.play(buf, { speed: 1.0, volume: 1.0 }) // The second option object is optional. The speed and volume is both set to 1.0 by default.
+try {
+    const buf = fs.readFileSync("chime.ogg"); // Gets a Buffer
+
+    symphonia.play(buf, { speed: 1.0, volume: 1.0 }) // The second option object is optional. The speed and volume is both set to 1.0 by default.
+}
+
+    // You can also obtain buffers from a web request
+    axios.get(URL).then((res) => Buffer.from(res.data, "binary"))
+        .then((buf) => {
+            symphonia.play(buf);
+        })
+} catch (e) {
+    console.log("Error playing audio: ", e)
+}
 ```
 
-You can also obtain buffers from a web request. Note that calling `play()` blocks the main thread so use worker threads to make it concurrent (currently looking for ways to create a non-blocking version of `play()` so you don't have to contend with worker threads).
+Note that calling `play()` blocks the main thread so use worker threads to make it concurrent (currently looking for ways to create a non-blocking version of `play()` so you don't have to contend with worker threads).
+
+```js
+const { Worker, isMainThread, parentPort } = require("worker_threads");
+
+if (isMainThread) {
+    const worker = new Worker(__filename);
+    worker.on("message", (msg) => console.log(msg))
+} else {
+    const buf = fs.readFileSync("chime.ogg");
+    symphonia.play(buf);
+    parentPort.postMessage("finished playing");
+}
+```
