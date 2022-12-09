@@ -55,7 +55,7 @@ try {
 }
 ```
 
-Note that calling `playX()` blocks the main thread so use worker threads to make it non-blocking.
+Note that calling `playFromX()` blocks the main thread so use worker threads to make it non-blocking.
 
 ```js
 const { Worker, isMainThread, parentPort } = require("worker_threads");
