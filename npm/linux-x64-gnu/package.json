@@ -1,6 +1,6 @@
 {
   "name": "@tropicbliss/symphonia-linux-x64-gnu",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "os": [
     "linux"
   ],
