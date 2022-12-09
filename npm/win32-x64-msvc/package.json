@@ -1,6 +1,6 @@
 {
   "name": "@tropicbliss/symphonia-win32-x64-msvc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An audio playback library for Node.js",
   "keywords": [
     "audio"
