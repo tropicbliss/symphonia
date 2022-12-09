@@ -52,6 +52,8 @@ Note that calling `play()` blocks the main thread so use worker threads to make 
 
 ```js
 const { Worker, isMainThread, parentPort } = require("worker_threads");
+const fs = require("fs");
+const symphonia = require("@tropicbliss/symphonia");
 
 if (isMainThread) {
     const worker = new Worker(__filename);

@@ -17,5 +17,10 @@
   },
   "libc": [
     "glibc"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": "https://github.com/tropicbliss/symphonia"
 }
