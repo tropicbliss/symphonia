@@ -218,6 +218,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { play } = nativeBinding
+const { playFromBuf, playFromSine } = nativeBinding
 
-module.exports.play = play
+module.exports.playFromBuf = playFromBuf
+module.exports.playFromSine = playFromSine

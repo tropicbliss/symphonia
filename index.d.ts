@@ -7,4 +7,5 @@ export interface Options {
   volume?: number
   speed?: number
 }
-export function play(buf: Buffer, opt?: Options | undefined | null): void
+export function playFromBuf(buf: Buffer, opt?: Options | undefined | null): void
+export function playFromSine(freq: number, ms: number, opt?: Options | undefined | null): void
