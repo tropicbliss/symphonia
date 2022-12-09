@@ -1,6 +1,6 @@
 {
   "name": "@tropicbliss/symphonia-darwin-arm64",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "An audio playback library for Node.js",
   "keywords": [
     "audio"
