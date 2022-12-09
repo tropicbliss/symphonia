@@ -16,16 +16,9 @@ pub struct Options {
   pub speed: Option<f64>,
 }
 
-impl Default for Options {
-  fn default() -> Self {
-    Self {
-      volume: Some(1.0),
-      speed: Some(1.0),
-    }
-  }
-}
-
 #[napi]
+/// The speed and volume is both set to 1.0 by default.
+/// Note that calling this function blocks the main thread so use worker threads to make it non-blocking.
 pub fn play_from_buf(buf: Buffer, opt: Option<Options>) -> Result<()> {
   let (_stream, stream_handle) =
     OutputStream::try_default().map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
@@ -49,6 +42,7 @@ pub fn play_from_buf(buf: Buffer, opt: Option<Options>) -> Result<()> {
 }
 
 #[napi]
+/// Note that calling this function blocks the main thread so use worker threads to make it non-blocking.
 pub fn play_from_sine(freq: u32, ms: f64, opt: Option<Options>) -> Result<()> {
   let (_stream, stream_handle) =
     OutputStream::try_default().map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;

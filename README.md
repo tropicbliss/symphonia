@@ -20,7 +20,7 @@ A "way too simple" cross-platform zero dependency audio playback library for Nod
 
 ## Note
 
-When I mean zero dependency, I mean zero dependency to a reasonable extent. There still needs to be a system sound library available for Symphonia.js to interface with. For Linux, you'll need ALSA (`libasound2` on Debian/Ubuntu based distros).
+When I mean zero dependency, I mean zero dependency to a reasonable extent. There still needs to be a system audio library available for Symphonia.js to interface with. For Linux, you'll need ALSA (`libasound2` on Debian/Ubuntu based distros).
 
 ## Credits
 
@@ -51,7 +51,7 @@ try {
 }
 ```
 
-Note that calling `play()` blocks the main thread so use worker threads to make it concurrent (currently looking for ways to create a non-blocking version of `play()` so you don't have to contend with worker threads).
+Note that calling `playX()` blocks the main thread so use worker threads to make it non-blocking.
 
 ```js
 const { Worker, isMainThread, parentPort } = require("worker_threads");

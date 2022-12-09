@@ -1,19 +1,13 @@
 {
   "name": "@tropicbliss/symphonia",
-  "version": "0.0.23",
+  "version": "0.1.0",
   "description": "An audio playback library for Node.js",
+  "keywords": [
+    "audio"
+  ],
   "main": "index.js",
   "repository": "https://github.com/tropicbliss/symphonia",
   "license": "MIT",
-  "keywords": [
-    "napi-rs",
-    "NAPI",
-    "N-API",
-    "Rust",
-    "node-addon",
-    "node-addon-api",
-    "audio"
-  ],
   "files": [
     "index.d.ts",
     "index.js"
