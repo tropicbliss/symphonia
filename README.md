@@ -36,10 +36,8 @@ const symphonia = require("@tropicbliss/symphonia");
 
 try {
     const buf = fs.readFileSync("chime.ogg"); // Gets a Buffer
-
     symphonia.play(buf, { speed: 1.0, volume: 1.0 }) // The second option object is optional. The speed and volume is both set to 1.0 by default.
-}
-
+    
     // You can also obtain buffers from a web request
     axios.get(URL).then((res) => Buffer.from(res.data, "binary"))
         .then((buf) => {
