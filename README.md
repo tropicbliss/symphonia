@@ -48,7 +48,7 @@ try {
             symphonia.playFromBuf(buf);
         })
     
-    // Play a sine wave at the frequency of 440Hz (about double the frequency of human hearing) for 250ms
+    // Play a sine wave at the frequency of 440Hz for 250ms
     symphonia.playFromSine(440.0, 250);
 } catch (e) {
     console.log("Error playing audio: ", e)
