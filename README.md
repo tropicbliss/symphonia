@@ -67,7 +67,7 @@ async function playStuff() {
     console.log("I'm not done yet, do something else to prevent this program from exiting!");
     if (data.totalDuration) {
         console.log(`This audio will be played for ${data.totalDuration} seconds.`);
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, data.totalDuration * 1000));
     }
 }
 
