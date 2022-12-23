@@ -37,35 +37,43 @@ const fs = require("fs");
 const symphonia = require("@tropicbliss/symphonia");
 
 try {
+    const audio = new Audio({ speed: 1.0, volume: 1.0 }) // The option object is optional. The speed and volume is both set to 1.0 by default.
     const buf = fs.readFileSync("chime.ogg"); // Gets a Buffer
-    symphonia.playFromBuf(buf, { speed: 1.0, volume: 1.0 }) // The second option object is optional. The speed and volume is both set to 1.0 by default.
+    audio.playFromBuf(buf);
 
     // You can also obtain buffers from a web request
     axios.get(URL).then((res) => Buffer.from(res.data, "binary"))
         .then((buf) => {
-            symphonia.playFromBuf(buf);
+            audio.playFromBuf(buf);
         })
     
     // Play a sine wave at the frequency of 440Hz for 250ms
-    symphonia.playFromSine(440.0, 250);
+    audio.playFromSine(440.0, 250);
 } catch (e) {
     console.log("Error playing audio: ", e)
 }
 ```
 
-Note that calling `playFromX()` blocks the main thread so use worker threads to make it non-blocking.
+Note that calling `playFromX()` without setting the `isBlocking` parameter blocks the main thread by default, so pass `false` to `isBlocking` to make the methods non-blocking.
 
 ```js
-const { Worker, isMainThread, parentPort } = require("worker_threads");
 const fs = require("fs");
 const symphonia = require("@tropicbliss/symphonia");
 
-if (isMainThread) {
-    const worker = new Worker(__filename);
-    worker.on("message", (msg) => console.log(msg))
-} else {
+async function playStuff() {
     const buf = fs.readFileSync("chime.ogg");
-    symphonia.playFromBuf(buf);
-    parentPort.postMessage("finished playing");
+    const audio = new Audio();
+    const data = audio.playFromBuf(buf, false);
+    console.log("I'm not done yet, do something else to prevent this program from exiting!");
+    if (data.totalDuration) {
+        console.log(`This audio will be played for ${data.totalDuration} seconds.`);
+        await new Promise(resolve => setTimeout(resolve, 5000));
+    }
+}
+
+try {
+    playStuff()
+} catch (e) {
+    console.log("Error playing audio: ", e)
 }
 ```

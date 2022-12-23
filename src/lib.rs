@@ -34,6 +34,7 @@ pub struct JsAudio {
 #[napi]
 impl JsAudio {
   #[napi(constructor)]
+  /// The speed and volume is both set to 1.0 by default.
   pub fn with_volume(opt: Option<Options>) -> Result<Self> {
     let (_stream, stream_handle) =
       OutputStream::try_default().map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
@@ -51,7 +52,7 @@ impl JsAudio {
   }
 
   #[napi]
-  /// The speed and volume is both set to 1.0 by default.
+  /// This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead.
   pub fn play_from_buf(&self, buf: Buffer, is_blocking: Option<bool>) -> Result<Data> {
     let is_blocking = is_blocking.unwrap_or(true);
     let buffer: Vec<u8> = buf.into();
@@ -69,14 +70,19 @@ impl JsAudio {
   }
 
   #[napi]
+  /// This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead.
   pub fn play_from_sine(&self, freq: u32, ms: f64, is_blocking: Option<bool>) -> Result<Data> {
     let is_blocking = is_blocking.unwrap_or(true);
     let source = SineWave::new(freq as f32).take_duration(Duration::from_millis(ms as u64));
     let data = Data {
       channels: source.channels(),
-      current_frame_len: source.current_frame_len().map(|i| i as u32),
+      current_frame_len: source
+        .current_frame_len()
+        .map(|i| i.try_into().unwrap_or(u32::MAX)),
       sample_rate: source.sample_rate(),
-      total_duration: source.total_duration().map(|d| d.as_millis() as u32),
+      total_duration: source
+        .total_duration()
+        .map(|d| d.as_millis().try_into().unwrap_or(u32::MAX)),
     };
     self.play(source, is_blocking)?;
     Ok(data)

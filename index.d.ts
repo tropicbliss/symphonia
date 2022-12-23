@@ -15,8 +15,10 @@ export interface Data {
 }
 export type JsAudio = Audio
 export class Audio {
-  constructor(opt?: Options | undefined | null)
   /** The speed and volume is both set to 1.0 by default. */
+  constructor(opt?: Options | undefined | null)
+  /** This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead. */
   playFromBuf(buf: Buffer, isBlocking?: boolean | undefined | null): Data
+  /** This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead. */
   playFromSine(freq: number, ms: number, isBlocking?: boolean | undefined | null): Data
 }
