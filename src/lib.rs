@@ -22,7 +22,7 @@ pub struct Data {
   pub channels: u16,
   pub current_frame_len: Option<u32>,
   pub sample_rate: u32,
-  /// In seconds
+  /// In seconds.
   pub total_duration: Option<u32>,
 }
 

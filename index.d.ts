@@ -11,7 +11,7 @@ export interface Data {
   channels: number
   currentFrameLen?: number
   sampleRate: number
-  /** In seconds */
+  /** In seconds. */
   totalDuration?: number
 }
 export type JsAudio = Audio

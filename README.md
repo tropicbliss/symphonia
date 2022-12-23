@@ -31,6 +31,8 @@ Lastly, when you call the functions for the first time it might take a few secon
 
 ## Usage
 
+Note: This API has been updated from v0.1.x to v0.2.x.
+
 ```js
 const axios = require("axios");
 const fs = require("fs");
