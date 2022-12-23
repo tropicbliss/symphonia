@@ -37,7 +37,7 @@ const fs = require("fs");
 const symphonia = require("@tropicbliss/symphonia");
 
 try {
-    const audio = new Audio({ speed: 1.0, volume: 1.0 }) // The option object is optional. The speed and volume is both set to 1.0 by default.
+    const audio = new symphonia.Audio({ speed: 1.0, volume: 1.0 }) // The option object is optional. The speed and volume is both set to 1.0 by default.
     const buf = fs.readFileSync("chime.ogg"); // Gets a Buffer
     audio.playFromBuf(buf);
 
@@ -62,7 +62,7 @@ const symphonia = require("@tropicbliss/symphonia");
 
 async function playStuff() {
     const buf = fs.readFileSync("chime.ogg");
-    const audio = new Audio();
+    const audio = new symphonia.Audio();
     const data = audio.playFromBuf(buf, false);
     console.log("I'm not done yet, do something else to prevent this program from exiting!");
     if (data.totalDuration) {
