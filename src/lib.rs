@@ -11,7 +11,6 @@ use std::{io::Cursor, time::Duration};
 extern crate napi_derive;
 
 #[napi(object)]
-#[derive(Clone)]
 pub struct Options {
   pub volume: Option<f64>,
   pub speed: Option<f64>,
