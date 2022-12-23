@@ -38,7 +38,7 @@ const symphonia = require("@tropicbliss/symphonia");
 
 try {
     const buf = fs.readFileSync("chime.ogg"); // Gets a Buffer
-    audio.playFromBuf(buf, { speed: 1.0, volume: 1.0 }); // The option object is optional. The speed and volume is both set to 1.0 by default.
+    audio.playFromBuf(buf, { speed: 1.0, volume: 1.0, isBlocking: true }); // The option object is optional. The speed and volume is both set to 1.0 and `isBlocking` is set to `true` by default.
 
     // You can also obtain buffers from a web request
     axios.get(URL).then((res) => Buffer.from(res.data, "binary"))
@@ -61,7 +61,7 @@ const symphonia = require("@tropicbliss/symphonia");
 
 async function playStuff() {
     const buf = fs.readFileSync("chime.ogg");
-    const data = audio.playFromBuf(buf, false);
+    const data = audio.playFromBuf(buf, { isBlocking: false });
     console.log("I'm not done yet, do something else to prevent this program from exiting!");
     if (data.totalDuration) {
         console.log(`This audio will be played for ${data.totalDuration} seconds.`);
