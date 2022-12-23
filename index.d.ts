@@ -7,10 +7,16 @@ export interface Options {
   volume?: number
   speed?: number
 }
-/**
- * The speed and volume is both set to 1.0 by default.
- * Note that calling this function blocks the main thread so use worker threads to make it non-blocking.
- */
-export function playFromBuf(buf: Buffer, opt: Options | undefined | null, hi: (arg0: number) => void): void
-/** Note that calling this function blocks the main thread so use worker threads to make it non-blocking. */
-export function playFromSine(freq: number, ms: number, opt?: Options | undefined | null): void
+export interface Data {
+  channels: number
+  currentFrameLen?: number
+  sampleRate: number
+  totalDuration?: number
+}
+export type JsAudio = Audio
+export class Audio {
+  constructor(opt?: Options | undefined | null)
+  /** The speed and volume is both set to 1.0 by default. */
+  playFromBuf(buf: Buffer, isBlocking?: boolean | undefined | null): Data
+  playFromSine(freq: number, ms: number, isBlocking?: boolean | undefined | null): Data
+}
