@@ -31,17 +31,14 @@ Lastly, when you call the functions for the first time it might take a few secon
 
 ## Usage
 
-Note: This API has been updated from v0.1.x to v0.2.x.
-
 ```js
 const axios = require("axios");
 const fs = require("fs");
 const symphonia = require("@tropicbliss/symphonia");
 
 try {
-    const audio = new symphonia.Audio({ speed: 1.0, volume: 1.0 }) // The option object is optional. The speed and volume is both set to 1.0 by default.
     const buf = fs.readFileSync("chime.ogg"); // Gets a Buffer
-    audio.playFromBuf(buf);
+    audio.playFromBuf(buf, { speed: 1.0, volume: 1.0 }); // The option object is optional. The speed and volume is both set to 1.0 by default.
 
     // You can also obtain buffers from a web request
     axios.get(URL).then((res) => Buffer.from(res.data, "binary"))
@@ -64,7 +61,6 @@ const symphonia = require("@tropicbliss/symphonia");
 
 async function playStuff() {
     const buf = fs.readFileSync("chime.ogg");
-    const audio = new symphonia.Audio();
     const data = audio.playFromBuf(buf, false);
     console.log("I'm not done yet, do something else to prevent this program from exiting!");
     if (data.totalDuration) {
