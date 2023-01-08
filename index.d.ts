@@ -14,14 +14,19 @@ export interface Data {
   sampleRate: number
   /** In seconds. */
   totalDuration?: number
+  /** Provides controls to play, pause, and stop the audio. */
+  controller?: Controller
 }
 /**
  * This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead.
- * The speed and volume is both set to 1.0 by default.
+ * The speed and volume is both set to 1.0 by default. Take note that a controller is only returned if the method is non-blocking,
  */
 export function playFromBuf(buf: Buffer, opt?: Options | undefined | null): Data
 /**
  * This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead.
- * The speed and volume is both set to 1.0 by default.
+ * The speed and volume is both set to 1.0 by default. Take note that a controller is only returned if the method is non-blocking,
  */
 export function playFromSine(freq: number, ms: number, opt?: Options | undefined | null): Data
+export type JsController = Controller
+/** Provides methods to play, pause, and stop the audio. */
+export class Controller {}

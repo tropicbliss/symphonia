@@ -61,14 +61,13 @@ Note that calling `playFromX()` without setting the `isBlocking` option paramete
 const fs = require('fs')
 const symphonia = require('@tropicbliss/symphonia')
 
-async function playStuff() {
+function playStuff() {
   const buf = fs.readFileSync('chime.ogg')
   const data = symphonia.playFromBuf(buf, { isBlocking: false })
   console.log("I'm not done yet, do something else to prevent this program from exiting!")
-  if (data.totalDuration) {
-    console.log(`This audio will be played for ${data.totalDuration} seconds.`)
-    await new Promise((resolve) => setTimeout(resolve, data.totalDuration * 1000))
-  }
+  data.controller.pause()
+  data.controller.play()
+  data.controller.stop()
 }
 
 try {

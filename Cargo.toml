@@ -10,6 +10,7 @@ version = "0.1.0"
 crate-type = ["cdylib"]
 
 [dependencies]
+crossbeam-channel = "0.5"
 napi = "2"
 napi-derive = "2"
 rodio = { version = "0.16", features = ["symphonia-isomp4", "symphonia-aac"] }
