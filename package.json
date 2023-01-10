@@ -1,6 +1,6 @@
 {
   "name": "@tropicbliss/symphonia",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "An audio playback library for Node.js",
   "keywords": [
     "audio"
@@ -40,20 +40,20 @@
     "version": "napi version"
   },
   "devDependencies": {
-    "@napi-rs/cli": "^2.11.4",
-    "@swc-node/register": "^1.5.1",
-    "@swc/core": "^1.3.5",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
-    "@typescript-eslint/parser": "^5.35.1",
-    "eslint": "^8.23.0",
-    "eslint-config-prettier": "^8.5.0",
+    "@napi-rs/cli": "^2.14.1",
+    "@swc-node/register": "^1.5.5",
+    "@swc/core": "^1.3.25",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.7.1",
-    "typescript": "^4.8.2"
+    "prettier": "^2.8.2",
+    "typescript": "^4.9.4"
   },
   "lint-staged": {
     "*.@(js|ts|tsx)": [

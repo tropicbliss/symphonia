@@ -27,6 +27,16 @@ export function playFromBuf(buf: Buffer, opt?: Options | undefined | null): Data
  * The speed and volume is both set to 1.0 by default. Take note that a controller is only returned if the method is non-blocking,
  */
 export function playFromSine(freq: number, ms: number, opt?: Options | undefined | null): Data
-export type JsController = Controller
 /** Provides methods to play, pause, and stop the audio. */
-export class Controller {}
+export class Controller {
+  /** Resumes playback. */
+  play(): void
+  /** Pauses playback. No effect if already paused. A paused controller can be resumed with `play()`. */
+  pause(): void
+  /** Stops the playback. Once stopped, the audio track can never be played again. */
+  stop(): void
+  /** Sets the playback speed. */
+  setSpeed(speed: number): void
+  /** Sets the playback volume. */
+  setVolume(volume: number): void
+}

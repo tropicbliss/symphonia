@@ -22,16 +22,18 @@ enum ControllerMessages {
   Play,
   Pause,
   Stop,
+  SetSpeed(f32),
+  SetVolume(f32),
 }
 
-#[napi(js_name = "Controller")]
+#[napi]
 /// Provides methods to play, pause, and stop the audio.
-pub struct JsController {
+pub struct Controller {
   tx: Sender<ControllerMessages>,
 }
 
 #[napi]
-impl JsController {
+impl Controller {
   #[napi]
   /// Resumes playback.
   pub fn play(&self) -> Result<()> {
@@ -61,6 +63,26 @@ impl JsController {
       .map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
     Ok(())
   }
+
+  #[napi]
+  /// Sets the playback speed.
+  pub fn set_speed(&self, speed: f64) -> Result<()> {
+    self
+      .tx
+      .send(ControllerMessages::SetSpeed(speed as f32))
+      .map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
+    Ok(())
+  }
+
+  #[napi]
+  /// Sets the playback volume.
+  pub fn set_volume(&self, volume: f64) -> Result<()> {
+    self
+      .tx
+      .send(ControllerMessages::SetVolume(volume as f32))
+      .map_err(|e| Error::new(Status::GenericFailure, e.to_string()))?;
+    Ok(())
+  }
 }
 
 #[napi(object)]
@@ -71,7 +93,7 @@ pub struct Data {
   /// In seconds.
   pub total_duration: Option<u32>,
   /// Provides controls to play, pause, and stop the audio.
-  pub controller: Option<ClassInstance<JsController>>,
+  pub controller: Option<ClassInstance<Controller>>,
 }
 
 #[napi]
@@ -88,7 +110,7 @@ pub fn play_from_buf(buf: Buffer, opt: Option<Options>, env: Env) -> Result<Data
 #[napi]
 /// This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead.
 /// The speed and volume is both set to 1.0 by default. Take note that a controller is only returned if the method is non-blocking,
-pub fn play_from_sine(freq: u32, ms: f64, opt: Option<Options>, env: Env) -> Result<Data> {
+pub fn play_from_sine(freq: u32, ms: u32, opt: Option<Options>, env: Env) -> Result<Data> {
   let source = SineWave::new(freq as f32).take_duration(Duration::from_millis(ms as u64));
   handler(source, opt, env)
 }
@@ -104,24 +126,31 @@ where
     true
   };
   if is_blocking {
-    let controller = None;
     let data = Data {
       channels: source.channels(),
-      current_frame_len: source.current_frame_len().map(|i| i as u32),
+      current_frame_len: source
+        .current_frame_len()
+        .map(|i| i.try_into().unwrap_or(u32::MAX)),
       sample_rate: source.sample_rate(),
-      total_duration: source.total_duration().map(|d| d.as_secs() as u32),
-      controller,
+      total_duration: source
+        .total_duration()
+        .map(|d| d.as_secs().try_into().unwrap_or(u32::MAX)),
+      controller: None,
     };
     play_blocking(source, opt)?;
     Ok(data)
   } else {
     let (tx, rx) = bounded::<ControllerMessages>(1);
-    let controller = Some(JsController { tx }.into_instance(env)?);
+    let controller = Some(Controller { tx }.into_instance(env)?);
     let data = Data {
       channels: source.channels(),
-      current_frame_len: source.current_frame_len().map(|i| i as u32),
+      current_frame_len: source
+        .current_frame_len()
+        .map(|i| i.try_into().unwrap_or(u32::MAX)),
       sample_rate: source.sample_rate(),
-      total_duration: source.total_duration().map(|d| d.as_secs() as u32),
+      total_duration: source
+        .total_duration()
+        .map(|d| d.as_secs().try_into().unwrap_or(u32::MAX)),
       controller,
     };
     std::thread::spawn(|| {
@@ -183,6 +212,8 @@ where
             // Once the sink is stopped, the queue is cleared, and no more audio can be played, so we might as well stop the thread right now.
             break;
           },
+          Ok(ControllerMessages::SetSpeed(speed)) => sink.set_speed(speed),
+          Ok(ControllerMessages::SetVolume(volume)) => sink.set_volume(volume),
           Err(_) => {
             // When the controller gets garbage collected and tx drops, we don't want the playing to stop
             if !sink.is_paused() {
