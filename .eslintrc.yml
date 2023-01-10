@@ -64,7 +64,7 @@ overrides:
   - files:
       - ./**/*{.ts,.tsx}
     rules:
-      'no-empty': 0
+      'no-empty': 1
       'no-unused-vars': [2, { varsIgnorePattern: '^_', argsIgnorePattern: '^_', ignoreRestSiblings: true }]
       'no-undef': 0
       # TypeScript declare merge
