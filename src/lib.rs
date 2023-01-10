@@ -110,7 +110,7 @@ pub fn play_from_buf(buf: Buffer, opt: Option<Options>, env: Env) -> Result<Data
 #[napi]
 /// This method blocks the thread by default. Set `isBlocking` to `false` to allow this method to spawn a thread in the background. Note that this incurs some additional overhead.
 /// The speed and volume is both set to 1.0 by default. Take note that a controller is only returned if the method is non-blocking,
-pub fn play_from_sine(freq: u32, ms: u32, opt: Option<Options>, env: Env) -> Result<Data> {
+pub fn play_from_sine(freq: f64, ms: u32, opt: Option<Options>, env: Env) -> Result<Data> {
   let source = SineWave::new(freq as f32).take_duration(Duration::from_millis(ms as u64));
   handler(source, opt, env)
 }
