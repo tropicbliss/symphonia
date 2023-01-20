@@ -3,6 +3,7 @@ env:
   DEBUG: napi:*
   APP_NAME: symphonia
   MACOSX_DEPLOYMENT_TARGET: '10.13'
+  RUSTFLAGS: -Ctarget-cpu=haswell
 'on':
   push:
     branches:
