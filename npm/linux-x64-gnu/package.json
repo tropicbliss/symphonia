@@ -1,6 +1,10 @@
 {
   "name": "@tropicbliss/symphonia-linux-x64-gnu",
   "version": "0.2.13",
+  "description": "An audio playback library for Node.js",
+  "keywords": [
+    "audio"
+  ],
   "os": [
     "linux"
   ],
@@ -17,5 +21,10 @@
   },
   "libc": [
     "glibc"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": "https://github.com/tropicbliss/symphonia"
 }

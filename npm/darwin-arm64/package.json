@@ -1,6 +1,10 @@
 {
   "name": "@tropicbliss/symphonia-darwin-arm64",
   "version": "0.2.13",
+  "description": "An audio playback library for Node.js",
+  "keywords": [
+    "audio"
+  ],
   "os": [
     "darwin"
   ],
@@ -14,5 +18,10 @@
   "license": "MIT",
   "engines": {
     "node": ">= 10"
-  }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": "https://github.com/tropicbliss/symphonia"
 }
