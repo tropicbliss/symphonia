@@ -1,6 +1,6 @@
 {
   "name": "@tropicbliss/symphonia",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "An audio playback library for Node.js",
   "keywords": [
     "audio"
