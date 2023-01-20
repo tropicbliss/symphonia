@@ -104,9 +104,7 @@ switch (platform) {
         nativeBinding = require('@tropicbliss/symphonia-darwin-universal')
       }
       break
-    } catch {
-      // I want application to not crash, but don't care about the message
-    }
+    } catch {}
     switch (arch) {
       case 'x64':
         localFileExisted = existsSync(join(__dirname, 'symphonia.darwin-x64.node'))
