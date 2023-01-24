@@ -4,10 +4,11 @@ A "way too simple" cross-platform zero dependency audio playback library for Nod
 
 ## Supported Platforms
 
-- Windows (x64)
-- macOS (x64)
-- macOS (ARM64)
-- Linux (x64)
+- Windows (x86-64)
+- Windows (i386) (32-bit)
+- macOS (x86-64)
+- macOS (arm64)
+- Linux (x86-64)
 
 ## Supported Audio Formats
 
