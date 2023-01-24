@@ -17,7 +17,8 @@
     "triples": {
       "defaults": true,
       "additional": [
-        "aarch64-apple-darwin"
+        "aarch64-apple-darwin",
+        "i686-pc-windows-msvc"
       ]
     }
   },
