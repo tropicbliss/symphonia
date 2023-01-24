@@ -16,7 +16,7 @@ A "way too simple" cross-platform zero dependency audio playback library for Nod
 - WAV
 - Vorbis
 - FLAC
-- MP4
+- M4A
 - AAC
 
 ## Note
@@ -27,8 +27,10 @@ Lastly, when you call the functions for the first time it might take a few secon
 
 ## Credits
 
+- [cpal](https://github.com/rustaudio/cpal)
 - [napi-rs](https://github.com/napi-rs/napi-rs)
 - [rodio](https://github.com/RustAudio/rodio)
+- [symphonia](https://github.com/pdeljanov/Symphonia)
 
 ## Usage
 
