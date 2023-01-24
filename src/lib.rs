@@ -115,6 +115,7 @@ pub fn play_from_sine(freq: f64, ms: u32, opt: Option<Options>, env: Env) -> Res
   handler(source, opt, env)
 }
 
+#[inline]
 fn handler<S>(source: S, opt: Option<Options>, env: Env) -> Result<Data>
 where
   S: Source + Send + 'static,
@@ -160,6 +161,7 @@ where
   }
 }
 
+#[inline]
 fn play_blocking<S>(source: S, opt: Option<Options>) -> Result<()>
 where
   S: Source + Send + 'static,
@@ -182,6 +184,7 @@ where
   Ok(())
 }
 
+#[inline]
 fn play<S>(source: S, opt: Option<Options>, rx: Receiver<ControllerMessages>) -> Result<()>
 where
   S: Source + Send + 'static,

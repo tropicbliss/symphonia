@@ -16,7 +16,7 @@ A "way too simple" cross-platform zero dependency audio playback library for Nod
 - WAV
 - Vorbis
 - FLAC
-- M4A
+- MP4
 - AAC
 
 ## Note
