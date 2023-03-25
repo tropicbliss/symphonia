@@ -10,10 +10,10 @@ version = "0.1.0"
 crate-type = ["cdylib"]
 
 [dependencies]
-crossbeam-channel = "0.5"
-napi = "2"
-napi-derive = "2"
-rodio = { version = "0.16", features = ["symphonia-all"], default_features = false }
+crossbeam-channel = "0.5.7"
+napi = "2.12.1"
+napi-derive = "2.12.2"
+rodio = { version = "0.17.1", features = ["symphonia-all"], default_features = false }
 
 [build-dependencies]
-napi-build = "2"
+napi-build = "2.0.1"
