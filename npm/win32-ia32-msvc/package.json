@@ -1,6 +1,6 @@
 {
   "name": "@tropicbliss/symphonia-win32-ia32-msvc",
-  "version": "0.2.19",
+  "version": "0.2.20",
   "os": [
     "win32"
   ],
