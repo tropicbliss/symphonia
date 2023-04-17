@@ -108,20 +108,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc-node/core@npm:^1.10.1":
-  version: 1.10.1
-  resolution: "@swc-node/core@npm:1.10.1"
+"@swc-node/core@npm:^1.10.3":
+  version: 1.10.3
+  resolution: "@swc-node/core@npm:1.10.3"
   peerDependencies:
     "@swc/core": ">= 1.3"
-  checksum: ee5b85e5b1cb4c35eb148726b3a5313b92f554e9aec5195468cbd0f0c1cca184794b5b10d97adfd88de6f64090c5c1520e035dfe4386b2992f7624bae3700bcb
+  checksum: 6e3e50a44d7a1c1aa62599d83c58f21568c1da03422124b46634488aba02747939063eeb1a2710aab0ab9f14f347386226a017ed72e6ba608d4a26532cd426af
   languageName: node
   linkType: hard
 
 "@swc-node/register@npm:^1.6.2":
-  version: 1.6.2
-  resolution: "@swc-node/register@npm:1.6.2"
+  version: 1.6.4
+  resolution: "@swc-node/register@npm:1.6.4"
   dependencies:
-    "@swc-node/core": ^1.10.1
+    "@swc-node/core": ^1.10.3
     "@swc-node/sourcemap-support": ^0.3.0
     colorette: ^2.0.19
     debug: ^4.3.4
@@ -130,7 +130,7 @@ __metadata:
   peerDependencies:
     "@swc/core": ">= 1.3"
     typescript: ">= 4.3"
-  checksum: b20a72471d36675130c7ee48ced637ff0e3331d8104c0eef6630293ed2245a13ed7f6151c7fdd0f9d6ac49e699c06dc92976d4279ae7c59b0e1a204235fdaaaa
+  checksum: 9112d10e1ef69a84d9043087ae09600b1d34d1901cef67b69329ddc642b9200ee8aabc5bdc419678e76b3f4e950a1ab13bac3999b92c9ec2fc9c8ce6a33943f2
   languageName: node
   linkType: hard
 
